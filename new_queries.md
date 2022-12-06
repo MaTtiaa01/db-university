@@ -14,13 +14,17 @@ Join:
 BONUS: Selezionare per ogni studente quanti tentativi d’esame ha sostenuto per superare ciascuno dei suoi esami
 
 ```sql
- 1# SELECT COUNT(id), YEAER(enrolment_date) AS year FROM students GROUP BY year; //DA SISTEMARE
+ 1# SELECT COUNT(`students`.`id`) AS `students_number`, YEAR(`students`.`enrolment_date`) AS year FROM `students` GROUP BY  `students`.`id`, year; //DA SISTEMARE
  
  2# SELECT COUNT(`id`) , `office_address` FROM `teachers` GROUP BY `office_address`;
  
- 3# SELECT AVG(`vote`) FROM `exam_student`; //da sistemare
+ 3# SELECT AVG(`exam_student`.`vote`), `exam_student`.`exam_id` FROM `exam_student` GROUP BY `exam_student`.`exam_id`, `exam_student`.`vote`; //da sistemare
  
- 4# 
+ 4# SELECT `departments`.`name`, `degrees`.`name`, `degrees`.`id`
+    FROM `departments`
+    JOIN `degrees`
+    ON `degrees`.`department_id` = `departments`.`id`
+    GROUP BY `departments`.`name` , `degrees`.`id`; // da sistemare
  
  5# SELECT `students`.`name`,`students`.`id`,`students`.`surname`,`students`.`registration_number`,        `degrees`.`name` AS `deegre_name`
       FROM `degrees`
@@ -42,7 +46,12 @@ BONUS: Selezionare per ogni studente quanti tentativi d’esame ha sostenuto per
       ON `course_teacher`.`teacher_id` = `teachers`.`id`
       WHERE `teachers`.`id` = 44;
   
-  8#
+  8# SELECT `students`.`name` AS `student_name`, `students`.`surname` AS `student_surname`,`students`.`registration_number` AS `student_registration_number`, `degrees`.`name` AS `degree_name`, `departments`.`name` AS `department_name`
+      FROM `departments`
+      JOIN `degrees`
+      ON `degrees`.`department_id` = `departments`.`id`
+      JOIN `students`
+      ON `students`.`degree_id` = `degrees`.`id`;
 
   9# SELECT `degrees`.`name` AS `degree_name`, `courses`.`name` AS `course_name`, `teachers`.`name` AS  `teachers_name`, `teachers`.`surname` AS `teachers_surname`
     FROM `degrees`
@@ -64,4 +73,5 @@ BONUS: Selezionare per ogni studente quanti tentativi d’esame ha sostenuto per
       JOIN `teachers`
       ON `course_teacher`.`teacher_id` = `teachers`.`id`
       WHERE `departments`.`name` = "Dipartimento di Matematica";
+      // prende i doppioni
 ```
