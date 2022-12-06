@@ -15,8 +15,30 @@ BONUS: Selezionare per ogni studente quanti tentativi d’esame ha sostenuto per
 
 ```sql
  1# SELECT COUNT(id), YEAER(enrolment_date) AS year FROM students GROUP BY year; //DA SISTEMARE
+ 
  2# SELECT COUNT(`id`) , `office_address` FROM `teachers` GROUP BY `office_address`;
+ 
  3# SELECT AVG(`vote`) FROM `exam_student`; //da sistemare
+ 
  4# 
-
+ 
+ 5# SELECT `students`.`name`,`students`.`id`,`students`.`surname`,`students`.`registration_number`,        `degrees`.`name` AS `deegre_name`
+      FROM `degrees`
+      JOIN `students`
+      ON `students`.`degree_id` = `degrees`.`id`
+      WHERE `degrees`.`name` = "Corso di Laurea in Economia";
+ 
+ 6# SELECT `degrees`.`level`, `degrees`.`name` AS `degree_name`, `departments`.`name`
+    FROM `departments`
+    JOIN `degrees`
+    ON `degrees`.`department_id` = `departments`.`id`
+    WHERE `departments`.`name` = "Dipartimento di Neuroscienze";
+ 
+ 7# SELECT `courses`.`name` AS `course_name` , `teachers`.`id`, `teachers`.`name`, `teachers`.`surname`
+      FROM `courses`
+      JOIN `course_teacher`
+      ON `course_teacher`.`course_id` = `courses`.`id`
+      JOIN `teachers`
+      ON `course_teacher`.`teacher_id` = `teachers`.`id`
+      WHERE `teachers`.`id` = 44;
 ```
