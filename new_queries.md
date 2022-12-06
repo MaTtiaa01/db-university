@@ -41,4 +41,27 @@ BONUS: Selezionare per ogni studente quanti tentativi d’esame ha sostenuto per
       JOIN `teachers`
       ON `course_teacher`.`teacher_id` = `teachers`.`id`
       WHERE `teachers`.`id` = 44;
+  
+  8#
+
+  9# SELECT `degrees`.`name` AS `degree_name`, `courses`.`name` AS `course_name`, `teachers`.`name` AS  `teachers_name`, `teachers`.`surname` AS `teachers_surname`
+    FROM `degrees`
+    JOIN `courses`
+    ON `courses`.`degree_id` = `degrees`.`id`
+    JOIN `course_teacher`
+    ON `course_teacher`.`course_id` = `courses`.`id`
+    JOIN `teachers`
+    ON `course_teacher`.`teacher_id` = `teachers`.`id`;
+  
+  10# SELECT DISTINCT `teachers`.`name` AS `teacher_name`, `teachers`.`surname` AS `teacher_surname`, `teachers`.`id` AS `teacher_id`, `departments`.`name` AS `department_name`, `courses`.`name` AS `courses_name`
+      FROM `departments`
+      JOIN `degrees`
+      ON `degrees`.`department_id` = `departments`.`id`
+      JOIN `courses`
+      ON `courses`.`degree_id` = `degrees`.`id`
+      JOIN `course_teacher`
+      ON `course_teacher`.`course_id` = `courses`.`id`
+      JOIN `teachers`
+      ON `course_teacher`.`teacher_id` = `teachers`.`id`
+      WHERE `departments`.`name` = "Dipartimento di Matematica";
 ```
